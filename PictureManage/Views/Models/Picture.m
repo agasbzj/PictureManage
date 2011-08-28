@@ -10,5 +10,12 @@
 
 
 @implementation Picture
-
+@synthesize imageUrl,imageDescript,belongCategory;
+-(void)dealloc{
+    [imageUrl release];
+    [imageDescript release];
+    [belongCategory  release];
+    [super dealloc];
+    
+}
 @end

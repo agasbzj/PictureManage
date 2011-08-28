@@ -13,7 +13,11 @@
     NSString *  imageUrl;  //1.jpg
     NSString *  imageDescript;
     NSString *  belongCategory;
+    
 }
 
 
+@property(nonatomic,retain) NSString *  imageUrl;
+@property(nonatomic,retain) NSString *  imageDescript;
+@property(nonatomic,retain) NSString *  belongCategory;
 @end
