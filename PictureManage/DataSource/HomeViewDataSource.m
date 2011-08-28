@@ -11,4 +11,13 @@
 
 @implementation HomeViewDataSource
 
+
++ (NSArray *)imagesInfoWithCategory:(NSString *)category {
+    NSArray *array = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/%@/Details.plist", NSHomeDirectory(), category]];
+    if (array) 
+        return array;
+    else
+        return nil;
+}
+
 @end

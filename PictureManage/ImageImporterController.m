@@ -38,9 +38,8 @@ static float kProgressValue = 0.f;
 
 - (id)initWithCamera:(BOOL)isUsingCamera {
     if ((self = [super init])) {
+        _isUsingCamera = isUsingCamera;
         _saveQueue = [[NSOperationQueue alloc] init];
-        
-        
         _selectedImages = [[NSMutableArray alloc] init];
         if (!isUsingCamera) {
             UIToolbar *toolBar = [[UIToolbar alloc] init];
@@ -153,6 +152,7 @@ static float kProgressValue = 0.f;
         NSString *name = [Hash md5:date];
         ImageSavingOperation *operation = [[[ImageSavingOperation alloc] init] autorelease];
         operation.image = image;
+        operation.category = categoryName;
         operation.path = path;
         operation.name = name;
         operation.detail = detail;

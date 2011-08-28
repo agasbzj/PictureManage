@@ -136,12 +136,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden= YES;
-    
     [self performSelector:@selector(initScrollView)];
-    
-
-    
-
 }
 
 -(void)doManageButton{
@@ -154,11 +149,21 @@
 }
 
 -(void)doPhotoButton{
-    
+    if ([ImageImporterController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        ImageImporterController *picker = [[ImageImporterController alloc] initWithCamera:YES];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentModalViewController:picker animated:YES];
+        [picker release];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的设备不支持照相机" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
 }
 -(void)doImportButton{
     ImageImporterController *importer = [[ImageImporterController alloc] initWithCamera:NO];
-    importer.isUsingCamera = NO;
     importer.delegate = self;
     [self presentModalViewController:importer animated:YES];
     [importer release];
