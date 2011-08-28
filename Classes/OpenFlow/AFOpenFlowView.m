@@ -209,10 +209,10 @@ const static CGFloat kReflectionFraction = 0.85;
 	
 	halfScreenWidth = self.bounds.size.width / 2;
 	halfScreenHeight = self.bounds.size.height / 2;
-
+    
 	int lowerBound = MAX(-1, selectedCoverView.number - COVER_BUFFER);
 	int upperBound = MIN(self.numberOfImages - 1, selectedCoverView.number + COVER_BUFFER);
-
+    
 	[self layoutCovers:selectedCoverView.number fromCover:lowerBound toCover:upperBound];
 	[self centerOnSelectedCover:NO];
 }
@@ -220,7 +220,7 @@ const static CGFloat kReflectionFraction = 0.85;
 - (void)setNumberOfImages:(int)newNumberOfImages {
 	numberOfImages = newNumberOfImages;
 	scrollView.contentSize = CGSizeMake(newNumberOfImages * COVER_SPACING + self.bounds.size.width, self.bounds.size.height);
-
+    
 	int lowerBound = MAX(0, selectedCoverView.number - COVER_BUFFER);
 	int upperBound = MIN(self.numberOfImages - 1, selectedCoverView.number + COVER_BUFFER);
 	
@@ -256,26 +256,27 @@ const static CGFloat kReflectionFraction = 0.85;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint startPoint = [[touches anyObject] locationInView:self];
 	isDraggingACover = NO;
+    isPressOperate  = YES;
 	
 	// Which cover did the user tap?
 	CALayer *targetLayer = (CALayer *)[scrollView.layer hitTest:startPoint];
 	AFItemView *targetCover = [self findCoverOnscreen:targetLayer];
 	isDraggingACover = (targetCover != nil);
-
+    
 	beginningCover = selectedCoverView.number;
 	// Make sure the user is tapping on a cover.
 	startPosition = (startPoint.x / 1.5) + scrollView.contentOffset.x;
 	
 	if (isSingleTap)
 		isDoubleTap = YES;
-		
+    
 	isSingleTap = ([touches count] == 1);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	isSingleTap = NO;
 	isDoubleTap = NO;
-	
+	isPressOperate =NO;
 	// Only scroll if the user started on a cover.
 	if (!isDraggingACover)
 		return;
@@ -304,12 +305,20 @@ const static CGFloat kReflectionFraction = 0.85;
 		if (targetCover && (targetCover.number != selectedCoverView.number))
 			[self setSelectedCover:targetCover.number];
 	}
+    
 	[self centerOnSelectedCover:YES];
 	
 	// And send the delegate the newly selected cover message.
 	if (beginningCover != selectedCoverView.number)
+    {
 		if ([self.viewDelegate respondsToSelector:@selector(openFlowView:selectionDidChange:)])
 			[self.viewDelegate openFlowView:self selectionDidChange:selectedCoverView.number];
+    }
+    else{
+        if (isPressOperate && [self.viewDelegate respondsToSelector:@selector(openFlowView:didSelectAtIndex:)])
+            [self.viewDelegate openFlowView:self didSelectAtIndex:selectedCoverView.number];
+    }
+    
 }
 
 - (void)centerOnSelectedCover:(BOOL)animated {
@@ -354,7 +363,7 @@ const static CGFloat kReflectionFraction = 0.85;
 			[cover removeFromSuperview];
 			[onscreenCovers removeObjectForKey:[NSNumber numberWithInt:cover.number]];
 		}
-			
+        
 		// Move all available covers to new location.
 		for (int i=newLowerBound; i <= newUpperBound; i++) {
 			cover = [self coverForIndex:i];
@@ -362,7 +371,7 @@ const static CGFloat kReflectionFraction = 0.85;
 			[self updateCoverImage:cover];
 			[scrollView.layer addSublayer:cover.layer];
 		}
-
+        
 		lowerVisibleCover = newLowerBound;
 		upperVisibleCover = newUpperBound;
 		selectedCoverView = (AFItemView *)[onscreenCovers objectForKey:[NSNumber numberWithInt:newSelectedCover]];
@@ -431,7 +440,7 @@ const static CGFloat kReflectionFraction = 0.85;
 		}
 		lowerVisibleCover = newLowerBound;
 	}
-
+    
 	if (selectedCoverView.number > newSelectedCover)
 		[self layoutCovers:newSelectedCover fromCover:newSelectedCover toCover:selectedCoverView.number];
 	else if (newSelectedCover > selectedCoverView.number)

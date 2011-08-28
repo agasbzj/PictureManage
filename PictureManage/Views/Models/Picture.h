@@ -13,7 +13,6 @@
     NSString *  imageUrl;  //1.jpg
     NSString *  imageDescript;
     NSString *  belongCategory;
-    
 }
 
 

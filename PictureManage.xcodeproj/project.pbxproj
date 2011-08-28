@@ -59,6 +59,7 @@
 		7D9004381408D90E00AF6DCD /* PathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9004371408D90E00AF6DCD /* PathHelper.m */; };
 		7D90043A1408FA7A00AF6DCD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9004391408FA7A00AF6DCD /* add.png */; };
 		7D9004491409052500AF6DCD /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9004481409052500AF6DCD /* Picture.m */; };
+		7DEBA80E1409FD5F00801F3C /* PictureDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBA80D1409FD5F00801F3C /* PictureDetailViewController.m */; };
 		7DEFE8D3140688E900D684EC /* HomeViewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFE8D2140688E900D684EC /* HomeViewImageCell.m */; };
 		7DEFE8F214069F6E00D684EC /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFE8F114069F6E00D684EC /* ImageView.m */; };
 		A9CEFE511409D9B50027926E /* ImageImporterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9CEFE4E1409D9B50027926E /* ImageImporterController.m */; };
@@ -140,6 +141,8 @@
 		7D9004391408FA7A00AF6DCD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		7D9004471409052500AF6DCD /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
 		7D9004481409052500AF6DCD /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		7DEBA80C1409FD5F00801F3C /* PictureDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureDetailViewController.h; sourceTree = "<group>"; };
+		7DEBA80D1409FD5F00801F3C /* PictureDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureDetailViewController.m; sourceTree = "<group>"; };
 		7DEFE8D1140688E900D684EC /* HomeViewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewImageCell.h; sourceTree = "<group>"; };
 		7DEFE8D2140688E900D684EC /* HomeViewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewImageCell.m; sourceTree = "<group>"; };
 		7DEFE8F014069F6E00D684EC /* ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				7D0084571404B1C900F1828B /* HomeViewController.m */,
 				7D7F36A01406F70300EBDDF8 /* TestViewController.h */,
 				7D7F36A11406F70300EBDDF8 /* TestViewController.m */,
+				7DEBA80C1409FD5F00801F3C /* PictureDetailViewController.h */,
+				7DEBA80D1409FD5F00801F3C /* PictureDetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -258,12 +263,12 @@
 		7D0084621404B32B00F1828B /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				7D90041E1408C29100AF6DCD /* CategoryDataSource.h */,
+				7D90041F1408C29100AF6DCD /* CategoryDataSource.m */,
 				7D0084661404B41000F1828B /* HomeViewDataSource.h */,
 				7D0084671404B41000F1828B /* HomeViewDataSource.m */,
 				7D0084791404C12B00F1828B /* TableViewDataSource.h */,
 				7D00847A1404C12B00F1828B /* TableViewDataSource.m */,
-				7D90041E1408C29100AF6DCD /* CategoryDataSource.h */,
-				7D90041F1408C29100AF6DCD /* CategoryDataSource.m */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				A9CEFE571409D9FE0027926E /* ImageSavingOperation.m in Sources */,
 				A9CEFE581409D9FE0027926E /* RotateUIImage.m in Sources */,
 				A9CEFE5C1409DCA10027926E /* Hash.m in Sources */,
+				7DEBA80E1409FD5F00801F3C /* PictureDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

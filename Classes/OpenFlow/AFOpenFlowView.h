@@ -39,7 +39,7 @@
 	NSMutableDictionary				*coverImageHeights;
 	UIImage							*defaultImage;
 	CGFloat							defaultImageHeight;
-
+    
 	UIScrollView					*scrollView;
 	int								lowerVisibleCover;
 	int								upperVisibleCover;
@@ -47,7 +47,7 @@
 	int								beginningCover;
 	
 	AFItemView						*selectedCoverView;
-
+    
 	CATransform3D leftTransform, rightTransform;
 	
 	CGFloat halfScreenHeight;
@@ -57,6 +57,8 @@
 	Boolean isDoubleTap;
 	Boolean isDraggingACover;
 	CGFloat startPosition;
+    
+    Boolean isPressOperate; //by rex 是否是点击
 }
 
 @property (nonatomic, assign) id <AFOpenFlowViewDataSource> dataSource;
@@ -73,6 +75,7 @@
 @protocol AFOpenFlowViewDelegate <NSObject>
 @optional
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index;
+- (void)openFlowView:(AFOpenFlowView *)openFlowView didSelectAtIndex:(int)index;
 @end
 
 @protocol AFOpenFlowViewDataSource <NSObject>
