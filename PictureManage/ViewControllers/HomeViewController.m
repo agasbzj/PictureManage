@@ -11,7 +11,8 @@
 #import "CategoryViewController.h"
 #import "CategoryDataSource.h"
 #import "ImageImporterController.h"
-
+#import "Picture.h"
+#import "pictureDetailViewController.h"
 #define toolImageLeftMagn 19
 #define toolImageTopMagn 4
 @implementation HomeViewController
@@ -257,6 +258,17 @@
 
 #pragma mark -
 #pragma mark AFOpenFlowViewDataSource AFOpenFlowViewDelegate methods
+
+- (void)openFlowView:(AFOpenFlowView *)openFlowView didSelectAtIndex:(int)index{
+    
+    PictureDetailViewController *pictureDetailViewController =[[PictureDetailViewController alloc]init];
+    pictureDetailViewController.pictures =pictures;
+    pictureDetailViewController.index = index;
+    [self.navigationController pushViewController:pictureDetailViewController animated:YES];
+    [pictureDetailViewController release];
+    
+}
+
 - (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index{
     
 }
