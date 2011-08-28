@@ -38,9 +38,8 @@ static float kProgressValue = 0.f;
 
 - (id)initWithCamera:(BOOL)isUsingCamera {
     if ((self = [super init])) {
+        _isUsingCamera = isUsingCamera;
         _saveQueue = [[NSOperationQueue alloc] init];
-        
-        
         _selectedImages = [[NSMutableArray alloc] init];
         if (!isUsingCamera) {
             UIToolbar *toolBar = [[UIToolbar alloc] init];
