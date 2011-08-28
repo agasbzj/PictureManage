@@ -13,7 +13,7 @@
 
 
 + (NSArray *)imagesInfoWithCategory:(NSString *)category {
-    NSArray *array = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/%@/Details.plist", NSHomeDirectory(), category]];
+    NSArray *array = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/Documents/%@/Details.plist", NSHomeDirectory(), category]];
     if (array) 
         return array;
     else

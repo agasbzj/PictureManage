@@ -47,14 +47,14 @@
         {
             if(i == 0){
                 if(startIndex <pictuesCount){
-                    [leftImageView setUpimage: [UIImage imageNamed:[[self.puctures objectAtIndex:startIndex] imageUrl]]];
+                    [leftImageView setUpimage: [UIImage imageWithContentsOfFile:[[self.puctures objectAtIndex:startIndex] imageUrl]]];
                 }
             }
             
             else if (i ==1 ){
                 if(startIndex +1 < pictuesCount){
                     [middleImageView setHidden:NO];
-                    [middleImageView setUpimage: [UIImage imageNamed:[[self.puctures objectAtIndex:startIndex+1] imageUrl]]];
+                    [middleImageView setUpimage: [UIImage imageWithContentsOfFile:[[self.puctures objectAtIndex:startIndex+1] imageUrl]]];
                 }
                 else{
                     [middleImageView setHidden:YES];
@@ -65,7 +65,7 @@
             else if (i==2 )
                 if(startIndex +2 < pictuesCount){
                     [rightImageView setHidden:NO];
-                    [rightImageView setUpimage:[UIImage imageNamed:[[self.puctures objectAtIndex:startIndex+2] imageUrl]]];
+                    [rightImageView setUpimage:[UIImage imageWithContentsOfFile:[[self.puctures objectAtIndex:startIndex+2] imageUrl]]];
                 }
                 else  {
                     [rightImageView setHidden:YES];

@@ -13,6 +13,7 @@
 #import "ImageImporterController.h"
 #import "Picture.h"
 #import "pictureDetailViewController.h"
+#import "HomeViewDataSource.h"
 #define toolImageLeftMagn 19
 #define toolImageTopMagn 4
 @implementation HomeViewController
@@ -36,11 +37,15 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     pictures = [[NSMutableArray alloc]init];
-    for (int i =0; i<29; i++) {
+    
+    
+    NSArray *arr  = [[HomeViewDataSource imagesInfoWithCategory:@"abc"] retain];
+    
+    for (int i =0; i<[arr count]; i++) {
         picture = [[Picture alloc]init];
-        picture.imageUrl = [NSString stringWithFormat:@"%i.jpg",i];
+        picture.imageUrl = [[arr objectAtIndex:i] objectForKey:@"name"];
         picture.imageDescript = [NSString stringWithFormat:@"%i图片哦",i];
-        picture.belongCategory = @"时尚";
+        picture.belongCategory = [[arr objectAtIndex:i] objectForKey:@"category"];
         [pictures addObject:picture];
         [picture release];
     }
@@ -54,8 +59,7 @@
     
     afOpenFlowView = [[AFOpenFlowView alloc] initWithFrame:CGRectMake(0, 0, 320, 315)];
     afOpenFlowView.dataSource = self;
-    afOpenFlowView.viewDelegate = self;
-    
+    afOpenFlowView.viewDelegate = self;    
     [afOpenFlowView setNumberOfImages:[pictures count]];
     
     [afOpenFlowView defaultImage];
@@ -284,7 +288,7 @@
 -(void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index{
     
     NSString *imageUrl = [[pictures objectAtIndex:index] imageUrl];
-    UIImage *image = [UIImage imageNamed:imageUrl];
+    UIImage *image = [UIImage imageWithContentsOfFile:imageUrl];
     [openFlowView setImage:image  forIndex:index];
     
 }

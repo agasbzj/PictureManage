@@ -35,7 +35,8 @@
         imageView.image  = [UIImage imageNamed:[[self.pictures objectAtIndex:i] imageUrl]];
         [scrollView addSubview:imageView];
         [imageView release];
-    }    
+    } 
+    
     [self.view addSubview:scrollView];
     
     [scrollView setContentOffset:CGPointMake(self.index*320, 0) animated:NO];
