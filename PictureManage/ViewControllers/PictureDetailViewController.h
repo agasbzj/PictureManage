@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Picture.h"
 
-@interface PictureDetailViewController : UIViewController {
+
+@interface PictureDetailViewController : UIViewController<UIScrollViewDelegate> {
     UIScrollView * scrollView;
 }
 
 @property(nonatomic,retain)NSMutableArray * pictures;
 @property(nonatomic,assign)NSInteger index;
+
+
 
 
 @end

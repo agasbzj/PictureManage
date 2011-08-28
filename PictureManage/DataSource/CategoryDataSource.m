@@ -14,12 +14,7 @@ static  NSArray * gCategorys;
 
 
 +(NSArray *)categorys{
-
-
     gCategorys=[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/Documents/",NSHomeDirectory()] error:nil];
-
-    
-    
     return gCategorys;
 
 }
