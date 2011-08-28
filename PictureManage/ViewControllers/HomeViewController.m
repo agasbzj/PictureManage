@@ -37,8 +37,14 @@
     [super viewDidLoad];
     pictures = [[NSMutableArray alloc]init];
     for (int i =0; i<29; i++) {
-        [pictures addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg",i]]];
+        picture = [[Picture alloc]init];
+        picture.imageUrl = [NSString stringWithFormat:@"%i.jpg",i];
+        picture.imageDescript = [NSString stringWithFormat:@"%i图片哦",i];
+        picture.belongCategory = @"时尚";
+        [pictures addObject:picture];
+        [picture release];
     }
+
  
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 315) style:UITableViewStylePlain];
     _tableView.dataSource =self;
@@ -256,9 +262,9 @@
     
 }
 
+
 #pragma mark -
 #pragma mark AFOpenFlowViewDataSource AFOpenFlowViewDelegate methods
-
 - (void)openFlowView:(AFOpenFlowView *)openFlowView didSelectAtIndex:(int)index{
     
     PictureDetailViewController *pictureDetailViewController =[[PictureDetailViewController alloc]init];
@@ -269,14 +275,11 @@
     
 }
 
-- (void)openFlowView:(AFOpenFlowView *)openFlowView selectionDidChange:(int)index{
-    
-}
-
 
 -(void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index{
     
-    UIImage *image = [pictures objectAtIndex:index];
+    NSString *imageUrl = [[pictures objectAtIndex:index] imageUrl];
+    UIImage *image = [UIImage imageNamed:imageUrl];
     [openFlowView setImage:image  forIndex:index];
     
 }
@@ -284,7 +287,6 @@
 - (UIImage *)defaultImage{
 	return [UIImage imageNamed:@"0.jpg"];
 }
-
 
 
 

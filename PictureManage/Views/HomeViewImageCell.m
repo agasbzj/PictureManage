@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewImageCell.h"
-
+#import "Picture.h"
 
 #define kLeftImageRect   CGRectMake(20, 10, 80, 80)
 #define kMiddleImageRect CGRectMake(120, 10, 80, 80)
@@ -28,7 +28,7 @@
         
         rightImageView =[[ImageView alloc]initWithFrame:kRighteImageRect imageURL:@"3.jpg"];
         rightImageView.imageViewDelegate =self;
-
+        
         
         [self addSubview:leftImageView];
         [self addSubview:middleImageView];
@@ -42,36 +42,36 @@
     if([self.puctures count]>0){
         NSInteger startIndex = self.indexPath.row * 3;
         NSInteger pictuesCount = [self.puctures count];
+        
         for(int i = 0 ;i<3;i++)
         {
             if(i == 0){
                 if(startIndex <pictuesCount){
-                    
-            [leftImageView setUpimage:[self.puctures objectAtIndex:startIndex]];
+                    [leftImageView setUpimage: [UIImage imageNamed:[[self.puctures objectAtIndex:startIndex] imageUrl]]];
                 }
             }
-
-           else if (i ==1 ){
-               if(startIndex +1 < pictuesCount){
-                   [middleImageView setHidden:NO];
-                   [middleImageView setUpimage:[self.puctures objectAtIndex:startIndex+1]];
-               }
-               else{
-                   [middleImageView setHidden:YES];
-               }
-
-                            
+            
+            else if (i ==1 ){
+                if(startIndex +1 < pictuesCount){
+                    [middleImageView setHidden:NO];
+                    [middleImageView setUpimage: [UIImage imageNamed:[[self.puctures objectAtIndex:startIndex+1] imageUrl]]];
+                }
+                else{
+                    [middleImageView setHidden:YES];
+                }
+                
+                
             }
             else if (i==2 )
                 if(startIndex +2 < pictuesCount){
                     [rightImageView setHidden:NO];
-                    [rightImageView setUpimage:[self.puctures objectAtIndex:startIndex+2]];
+                    [rightImageView setUpimage:[UIImage imageNamed:[[self.puctures objectAtIndex:startIndex+2] imageUrl]]];
                 }
                 else  {
                     [rightImageView setHidden:YES];
                 }
             
-
+            
         }
     }
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AFOpenFlowView.h"
-
+@class Picture;
 @interface HomeViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, UIImagePickerControllerDelegate> {
     UITableView *_tableView;
     AFOpenFlowView * afOpenFlowView;
@@ -19,6 +19,7 @@
     NSMutableArray *pictures;
     NSMutableArray *toolImages;
     NSArray *categorys;
+     Picture *picture;
     
 }
 
