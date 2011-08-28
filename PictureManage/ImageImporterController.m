@@ -152,6 +152,7 @@ static float kProgressValue = 0.f;
         NSString *name = [Hash md5:date];
         ImageSavingOperation *operation = [[[ImageSavingOperation alloc] init] autorelease];
         operation.image = image;
+        operation.category = categoryName;
         operation.path = path;
         operation.name = name;
         operation.detail = detail;

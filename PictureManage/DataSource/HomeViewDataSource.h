@@ -13,6 +13,7 @@
     
 }
 
-
+//获取category下的plist文件信息
++ (NSArray *)imagesInfoWithCategory:(NSString *)category;
 
 @end

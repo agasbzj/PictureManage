@@ -24,7 +24,8 @@
 - (void)main {
     UIImage *img = [UIImage rotateImage:_image];
     NSData *imgData = UIImagePNGRepresentation(img);
-    [imgData writeToFile:[NSString stringWithFormat:@"%@/%@.png", _path, _name] atomically:YES];
+    NSString *imgPath = [NSString stringWithFormat:@"%@/%@.png", _path, _name];
+    [imgData writeToFile:imgPath atomically:YES];
     
     NSString *detailFile = [NSString stringWithFormat:@"%@/Details.plist", _path];
     NSMutableArray *detailArray;
@@ -33,7 +34,8 @@
         detailArray = [[NSMutableArray alloc] initWithArray:array copyItems:YES];
     else
         detailArray = [[NSMutableArray alloc] init];
-    NSDictionary *detailDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@.png", _name], @"name", _detail?_detail:@"点击以修改详细信息", @"detail", nil];
+
+    NSDictionary *detailDic = [NSDictionary dictionaryWithObjectsAndKeys:imgPath, @"name", [_detail isEqualToString:@""] ? @"点击以修改详细信息" : _detail, @"detail", _category, @"category", nil];
     [detailArray addObject:detailDic];
     [detailArray writeToFile:detailFile atomically:YES];
     NSLog(@"SAVEDSAVED");
