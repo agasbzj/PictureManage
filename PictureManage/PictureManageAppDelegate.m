@@ -33,4 +33,34 @@
     [super dealloc];
 }
 
++(PictureManageAppDelegate  *)getAppDelegate{
+    return (PictureManageAppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+#pragma mark -
+#pragma mark Alert
+
+static UIAlertView *sAlert = nil;
+
+- (void)alert:(NSString*)title message:(NSString*)message
+{
+    if (sAlert) return;
+    
+    sAlert = [[UIAlertView alloc] initWithTitle:title
+                                        message:message
+									   delegate:self
+							  cancelButtonTitle:@"Close"
+							  otherButtonTitles:nil];
+    [sAlert show];
+    [sAlert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonInde
+{
+    sAlert = nil;
+}
+
+
+
+
 @end

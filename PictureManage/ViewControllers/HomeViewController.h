@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AFOpenFlowView.h"
+#import "ImageView.h"
 @class Picture;
-@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, UIImagePickerControllerDelegate> {
+@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate,ImageViewDelegate> {
     UITableView *_tableView;
     AFOpenFlowView * afOpenFlowView;
     UISegmentedControl* segmentedControl;

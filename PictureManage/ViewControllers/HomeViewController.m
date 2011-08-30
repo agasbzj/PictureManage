@@ -14,8 +14,12 @@
 #import "Picture.h"
 #import "pictureDetailViewController.h"
 #import "HomeViewDataSource.h"
+#import "PathHelper.h"
+
+
 #define toolImageLeftMagn 19
 #define toolImageTopMagn 4
+
 @implementation HomeViewController
 
 
@@ -38,8 +42,12 @@
     [super viewDidLoad];
     pictures = [[NSMutableArray alloc]init];
     
+    if ([[CategoryDataSource categorys] count] ==0) {
+        [PathHelper createPathIfNecessary:@"default"];
+    }
     
-    NSArray *arr  = [[HomeViewDataSource imagesInfoWithCategory:@"abc"] retain];
+    
+    NSArray *arr  = [[HomeViewDataSource imagesInfoWithCategory:@"default"] retain];
     
     for (int i =0; i<[arr count]; i++) {
         picture = [[Picture alloc]init];
@@ -164,6 +172,10 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的设备不支持照相机" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
+              
+        
+        
+        
     }
 }
 -(void)doImportButton{
@@ -191,10 +203,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(ImageImporterController *)picker {
-    //    kPicker = nil;
-    //    if (_selectedImage && [_selectedImage count]) {
-    //        [_selectedImage removeAllObjects];
-    //    }
+    
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -204,7 +213,9 @@
     _scrollView.showsHorizontalScrollIndicator = NO;
     
     _scrollView.delegate=self;
+    
     categorys = [CategoryDataSource categorys];
+    
     NSInteger categorysNum = [categorys count];
     NSInteger pageNum = categorysNum/4;
     if (categorysNum %4 !=0) {
@@ -214,9 +225,11 @@
     _scrollView.contentSize = newSize;
     
     for (int i = 0; i<categorysNum; i++) {
-        UIImageView *imageView  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg",i]]];
-        [imageView setFrame:CGRectMake(toolImageLeftMagn+(i*toolImageLeftMagn)+i*60,toolImageTopMagn , 30, 30)];
+        ImageView *imageView  = [[ImageView alloc] initWithFrame:CGRectMake(toolImageLeftMagn+(i*toolImageLeftMagn)+i*60,toolImageTopMagn , 30, 30) imageURL:nil];
+        
         [_scrollView addSubview:imageView];
+        imageView.imageObject = [categorys objectAtIndex:i];
+        imageView.imageViewDelegate =self;
         [imageView release];
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(toolImageLeftMagn+(i*toolImageLeftMagn)+i*60, toolImageTopMagn+30, 30, 30)];
         label.text = [categorys objectAtIndex:i];
@@ -224,8 +237,6 @@
         label.textAlignment=UITextAlignmentCenter;
         [_scrollView addSubview:label];
         [label release];
-      
-        
     }
     
     
@@ -256,6 +267,7 @@
     return 100.0f;
 }
 
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellId = @"imageCell";
     
@@ -274,29 +286,40 @@
 
 #pragma mark -
 #pragma mark AFOpenFlowViewDataSource AFOpenFlowViewDelegate methods
-- (void)openFlowView:(AFOpenFlowView *)openFlowView didSelectAtIndex:(int)index{
-    
+- (void)openFlowView:(AFOpenFlowView *)openFlowView didSelectAtIndex:(int)index{    
     PictureDetailViewController *pictureDetailViewController =[[PictureDetailViewController alloc]init];
     pictureDetailViewController.pictures =pictures;
     pictureDetailViewController.index = index;
     [self.navigationController pushViewController:pictureDetailViewController animated:YES];
     [pictureDetailViewController release];
-    
 }
 
 
--(void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index{
-    
+-(void)openFlowView:(AFOpenFlowView *)openFlowView requestImageForIndex:(int)index{    
     NSString *imageUrl = [[pictures objectAtIndex:index] imageUrl];
     UIImage *image = [UIImage imageWithContentsOfFile:imageUrl];
     [openFlowView setImage:image  forIndex:index];
     
 }
-
 - (UIImage *)defaultImage{
 	return [UIImage imageNamed:@"0.jpg"];
 }
 
+
+- (void)onClickEvent:(ImageView*)aImageView imageObject:(id)aImageObject{
+    [pictures removeAllObjects];
+    NSArray *arr  = [[HomeViewDataSource imagesInfoWithCategory:aImageObject] retain];
+    for (int i =0; i<[arr count]; i++) {
+        picture = [[Picture alloc]init];
+        picture.imageUrl = [[arr objectAtIndex:i] objectForKey:@"name"];
+        picture.imageDescript = [NSString stringWithFormat:@"%i图片哦",i];
+        picture.belongCategory = [[arr objectAtIndex:i] objectForKey:@"category"];
+        [pictures addObject:picture];
+        [picture release];
+    }
+    [_tableView reloadData];
+            
+}
 
 
 @end

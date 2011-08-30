@@ -32,7 +32,7 @@
     //fill image
     for (int i=0; i<pageCount; i++) {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*320, 0, 320, 480-44)];
-        imageView.image  = [UIImage imageNamed:[[self.pictures objectAtIndex:i] imageUrl]];
+        imageView.image  = [UIImage imageWithContentsOfFile:[[self.pictures objectAtIndex:i] imageUrl]];
         [scrollView addSubview:imageView];
         [imageView release];
     } 

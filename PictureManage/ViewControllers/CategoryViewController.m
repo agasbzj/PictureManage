@@ -29,7 +29,7 @@
     
    // _categorys = [[NSMutableArray alloc]initWithObjects:@"时尚",@"风景",@"安吉漂流", nil];
     
-  _categorys = [[CategoryDataSource categorys] retain]; 
+ 
     
     UIBarButtonItem *rightBarItem  = [[UIBarButtonItem alloc]initWithTitle:@"新分组" style:UIBarButtonSystemItemAdd target:self action:@selector(addCategory)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
@@ -44,16 +44,15 @@
     [_categorys removeAllObjects];
     _categorys = nil;
     [_categorys release];
-    
-    
+     _categorys = [[CategoryDataSource categorys] retain]; 
     [_tableView reloadData];
-    
 }
 
 -(void)addCategory{
     CategoryEditViewController *categortEditViewController = [[CategoryEditViewController alloc]init];
     [self.navigationController pushViewController:categortEditViewController animated:YES];
     [categortEditViewController release];
+    
 }
 
 
@@ -77,7 +76,7 @@
     }
     
     cell.textLabel.text = [_categorys objectAtIndex:indexPath.row];
-   // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
        

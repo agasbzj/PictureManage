@@ -18,6 +18,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
++(PictureManageAppDelegate  *)getAppDelegate;
 
-
+- (void)alert:(NSString*)title message:(NSString*)message;
 @end
