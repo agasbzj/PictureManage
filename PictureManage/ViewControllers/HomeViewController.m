@@ -14,9 +14,9 @@
 #import "Picture.h"
 #import "pictureDetailViewController.h"
 #import "HomeViewDataSource.h"
+
+#import "CategoryEditViewController.h"
 #import "PathHelper.h"
-
-
 #define toolImageLeftMagn 19
 #define toolImageTopMagn 4
 
@@ -41,13 +41,13 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     pictures = [[NSMutableArray alloc]init];
+
     
-    if ([[CategoryDataSource categorys] count] ==0) {
+    NSArray *arr  = [[HomeViewDataSource imagesInfoWithCategory:@"default"] retain];
+    if ([[CategoryDataSource categorys] count] == 0) {
         [PathHelper createPathIfNecessary:@"default"];
     }
     
-    
-    NSArray *arr  = [[HomeViewDataSource imagesInfoWithCategory:@"default"] retain];
     
     for (int i =0; i<[arr count]; i++) {
         picture = [[Picture alloc]init];
