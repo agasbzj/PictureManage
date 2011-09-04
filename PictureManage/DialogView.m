@@ -23,31 +23,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-//        [self addTarget:self action:@selector(closeKeyboard) forControlEvents:UIControlEventTouchDown];
-//        self.backgroundColor = [UIColor blackColor];
-//        _textField = [[UITextField alloc] initWithFrame:CGRectMake(50, 50, 200, 50)];
-//        _textField.backgroundColor = [UIColor whiteColor];
-//        [self addSubview:_textField];
-//        
-//        _okButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 50, 30)];
-//        [_okButton setTitle:@"OK" forState:UIControlStateNormal];
-//        _okButton.backgroundColor = [UIColor whiteColor];
-//        [self addSubview:_okButton];
+        self = [super init];
+        if (self) {
+           
+            }
+            else{
+                //提示没有分组
+            }
+            
+        }
+        return self;
         
-//        NSString *path = [NSString stringWithFormat:@"%@/Documents/", NSHomeDirectory()];
-//        _categoryArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
     }
-    return self;
-}
+
+
 
 - (IBAction)showPickerView:(id)sender{
-    
-//    if (!_categoryArray) {
-//        _categoryArray = [[NSArray alloc] init];
-//    }
-//    else 
-//        [_categoryArray removeAllObjects];
     [_textField resignFirstResponder];
     [_detailTextField resignFirstResponder];
     
@@ -59,14 +50,6 @@
 
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 - (void)dealloc
 {
@@ -80,7 +63,6 @@
 - (IBAction)closeWindows:(id)sender {
     self.alpha = 0.f;
     [self closeKeyboard:nil];
-//    [self removeFromSuperview];
 }
 
 - (IBAction)closeKeyboard:(id)sender {
@@ -89,10 +71,11 @@
 }
 
 - (IBAction)okButtonPressed:(id)sender {
+    if([delegate respondsToSelector:@selector(importImageswithCategory:detial:)]){
     [delegate importImageswithCategory:_textField.text detial:_detailTextField.text];
     [self closeKeyboard:nil];
-//    [self removeFromSuperview];
     self.alpha = 0.f;
+    }
 }
 
 #pragma mark - pickerView Delegate Method
@@ -116,11 +99,6 @@
 }
 
 #pragma mark - TextField Delegate
-//- (void)textFieldDidEndEditing:(UITextField *)textField {
-//    [_textField resignFirstResponder];
-//    [_detailTextField resignFirstResponder];
-//}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;

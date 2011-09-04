@@ -23,6 +23,8 @@
     NSArray *_categoryArray;
     id <DialogViewDelegate> delegate;
 }
+
+
 @property (nonatomic, retain) IBOutlet UIButton *okButton;
 @property (nonatomic, retain) IBOutlet UITextField *textField;
 @property (nonatomic, retain) IBOutlet UITextField *detailTextField;

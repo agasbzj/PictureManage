@@ -26,7 +26,6 @@
     NSData *imgData = UIImagePNGRepresentation(img);
     NSString *imgPath = [NSString stringWithFormat:@"%@/%@.png", _path, _name];
     [imgData writeToFile:imgPath atomically:YES];
-    
     NSString *detailFile = [NSString stringWithFormat:@"%@/Details.plist", _path];
     NSMutableArray *detailArray;
     NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:detailFile];

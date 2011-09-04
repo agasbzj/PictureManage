@@ -12,6 +12,8 @@
 @interface CategoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_categorys;
+    
+    
 }
 
 

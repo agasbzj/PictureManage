@@ -10,8 +10,11 @@
 #import "Picture.h"
 
 
+
 @interface PictureDetailViewController : UIViewController<UIScrollViewDelegate> {
     UIScrollView * scrollView;
+    NSInteger currentPage;
+
 }
 
 @property(nonatomic,retain)NSMutableArray * pictures;

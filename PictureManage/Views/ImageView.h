@@ -12,8 +12,7 @@
 @protocol ImageViewDelegate;
 @interface ImageView : UIView
 {
-    UIImageView*                imageView;                
-        
+    UIImageView*                imageView;  
     
     Boolean                     isPressOperate;           
                      

@@ -19,6 +19,7 @@
     float progressValue;
     id parent;
 }
+
 @property (nonatomic, retain) NSString *path;
 @property (nonatomic, retain) NSString *category;
 @property (nonatomic, retain) NSString *detail;

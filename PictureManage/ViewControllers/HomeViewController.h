@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AFOpenFlowView.h"
 #import "ImageView.h"
+#import "ImageImporterController.h"
+#import "HomeViewImageCell.h"
 @class Picture;
-@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate,ImageViewDelegate> {
+@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,AFOpenFlowViewDelegate,AFOpenFlowViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate,ImageViewDelegate,ImageCellDidSelectImage,ImageImporterDelegate> {
     UITableView *_tableView;
     AFOpenFlowView * afOpenFlowView;
     UISegmentedControl* segmentedControl;
@@ -20,7 +22,7 @@
     NSMutableArray *pictures;
     NSMutableArray *toolImages;
     NSArray *categorys;
-     Picture *picture;
+    Picture *picture;
     
 }
 

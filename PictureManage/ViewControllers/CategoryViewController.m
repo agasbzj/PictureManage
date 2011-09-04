@@ -16,32 +16,35 @@
 {
     [_tableView release];
     [_categorys release];
+
     [super dealloc];
 }
 
+
 -(void)viewDidLoad{
     [super viewDidLoad];
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 480) style:UITableViewStylePlain];
+    
+      _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 480) style:UITableViewStylePlain];
     _tableView.delegate =self;
     _tableView.dataSource =self;
     
     [self.view addSubview:_tableView];
-    
    // _categorys = [[NSMutableArray alloc]initWithObjects:@"时尚",@"风景",@"安吉漂流", nil];
-    
- 
-    
     UIBarButtonItem *rightBarItem  = [[UIBarButtonItem alloc]initWithTitle:@"新分组" style:UIBarButtonSystemItemAdd target:self action:@selector(addCategory)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
     [rightBarItem release];
     
            
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+
+        self.navigationItem.title = @"分类管理";
+    
+    
     self.navigationController.navigationBarHidden = NO;
-    self.navigationItem.title = @"分类管理";
-    [_categorys removeAllObjects];
+       [_categorys removeAllObjects];
     _categorys = nil;
     [_categorys release];
      _categorys = [[CategoryDataSource categorys] retain]; 
@@ -76,7 +79,7 @@
     }
     
     cell.textLabel.text = [_categorys objectAtIndex:indexPath.row];
-   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
        
